@@ -106,6 +106,12 @@
 	}
 </style>
 
+<svelte:head>
+  <title>Home</title>
+  <meta name="description" content="Home of Bostoen Toby's portfolio" />
+  <link rel="canonical" href="https://tobybostoen.be" />
+</svelte:head>
+
 <main class="container center">
 	<section class="information center">
 		<h1 class="title">Bostoen Toby</h1>
@@ -116,11 +122,13 @@
 				{#if language != 'C#'}
 					<div class="container-lang center">
 						<i class="devicon-{language.toLocaleLowerCase()}-plain icon" />
+						<!-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{language}/{language}-plain.svg" alt="{language} icon" loading="lazy"> -->
 						<p>{language}</p>
 					</div>
 				{:else}
 					<div class="container-lang center">
 						<i class="devicon-csharp-plain icon" />
+						<!-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-plain.svg" alt="Csharp icon" loading="lazy"> -->
 						<p>{language}</p>
 					</div>
 				{/if}

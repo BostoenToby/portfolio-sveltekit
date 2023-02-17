@@ -119,6 +119,12 @@
 	}
 </style>
 
+<svelte:head>
+  <title>Project Vital Cities Beweegscan</title>
+  <meta name="description" content="The Vital Cities Beweegscan project from Bostoen Toby" />
+  <link rel="canonical" href="https://tobybostoen.be/projects/vitalcities" />
+</svelte:head>
+
 <main class="container">
 	<a href="/projects" class="back">
 		<ArrowLeft />

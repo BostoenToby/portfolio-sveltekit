@@ -102,6 +102,12 @@
 	}
 </style>
 
+<svelte:head>
+  <title>Projects</title>
+  <meta name="description" content="Project from Bostoen Toby" />
+  <link rel="canonical" href="https://tobybostoen.be/projects" />
+</svelte:head>
+
 <main class="container">
 	<h1 class="title">Projects</h1>
 	<section class="project-container">

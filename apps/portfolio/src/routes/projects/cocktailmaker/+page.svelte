@@ -111,6 +111,12 @@
 	}
 </style>
 
+<svelte:head>
+  <title>Project Cocktail Maker</title>
+  <meta name="description" content="The Cocktail Maker project from Bostoen Toby" />
+  <link rel="canonical" href="https://tobybostoen.be/projects/cocktailmaker" />
+</svelte:head>
+
 <main class="container">
 	<a href="/projects" class="back">
 		<ArrowLeft />

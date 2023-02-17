@@ -118,6 +118,12 @@
 	}
 </style>
 
+<svelte:head>
+  <title>Project Neohotel</title>
+  <meta name="description" content="The Neohotel project from Bostoen Toby" />
+  <link rel="canonical" href="https://tobybostoen.be/projects/neohotel" />
+</svelte:head>
+
 <main class="container">
 	<a href="/projects" class="back">
 		<ArrowLeft />

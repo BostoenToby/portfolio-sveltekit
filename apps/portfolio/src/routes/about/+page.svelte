@@ -55,6 +55,12 @@
 	}
 </style>
 
+<svelte:head>
+  <title>About</title>
+  <meta name="description" content="About Bostoen Toby" />
+  <link rel="canonical" href="https://tobybostoen.be/about" />
+</svelte:head>
+
 <main class="container">
 	<section class="between container-information">
 		<div class="information">

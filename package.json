@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "start": "turbo run start",
+    "start:prod": "git pull && npm i && npm run start",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""

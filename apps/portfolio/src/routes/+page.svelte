@@ -16,28 +16,23 @@
 
 <style scoped>
 	.container {
-		display: flex;
-		justify-content: center;
 		gap: 6rem;
 		flex: 1 1 auto;
-		align-items: center;
 	}
 
 	.information {
-		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 	}
 
 	.title {
-		font-size: 3rem;
+		font-size: 2rem;
 		color: var(--green);
 		padding-bottom: 2rem;
 	}
 
 	.subtitle {
-		font-size: 2rem;
+		font-size: 1.5rem;
+		color: var(--text);
 	}
 
 	.image {
@@ -49,24 +44,22 @@
 	}
 
 	.grid-lang {
-		padding-top: 2rem; 
+		padding-top: 2rem;
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 1rem;
 	}
 
 	.container-lang {
-		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 		padding: 1rem;
 		background-color: var(--gray);
 		border-radius: 5px;
+		color: var(--text);
 	}
 
 	.icon {
-		font-size: 2rem;
+		font-size: 1.5rem;
 		color: var(--green);
 		padding-bottom: 0.5rem;
 	}
@@ -113,20 +106,20 @@
 	}
 </style>
 
-<main class="container">
-	<section class="information">
+<main class="container center">
+	<section class="information center">
 		<h1 class="title">Bostoen Toby</h1>
 		<h2 class="subtitle">Full-stack Web Developer</h2>
 		<h3 class="subtitle">based in Belgium</h3>
 		<div class="grid-lang">
 			{#each languages as language}
 				{#if language != 'C#'}
-					<div class="container-lang">
+					<div class="container-lang center">
 						<i class="devicon-{language.toLocaleLowerCase()}-plain icon" />
 						<p>{language}</p>
 					</div>
 				{:else}
-					<div class="container-lang">
+					<div class="container-lang center">
 						<i class="devicon-csharp-plain icon" />
 						<p>{language}</p>
 					</div>
@@ -139,7 +132,7 @@
 		height="2179"
 		width="2136"
 		class="image"
-		src="personalimage.jpg"
+		src="/personalimage.webp"
 		alt="Bostoen Toby smiling to the camera" />
 
 </main>

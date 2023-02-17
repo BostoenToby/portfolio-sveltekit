@@ -1,18 +1,46 @@
 <script lang="ts">
 	import '@fontsource/montserrat'
 	import { Sun, Home, Cpu, Contact, Download } from 'lucide-svelte'
+
+	const changeTheme = () => {
+		console.log('Here')
+		if (
+			window.document.documentElement.style.getPropertyValue('--background') ===
+			'#FFFFFF'
+		) {
+			window.document.documentElement.style.setProperty(
+				'--background',
+				'#1f2937',
+			)
+			window.document.documentElement.style.setProperty('--green', '#7DE2D1')
+			window.document.documentElement.style.setProperty('--gray', '#334155')
+			window.document.documentElement.style.setProperty('--text', '#FFFFFF')
+		} else {
+			window.document.documentElement.style.setProperty(
+				'--background',
+				'#FFFFFF',
+			)
+			window.document.documentElement.style.setProperty('--green', '#339989')
+			window.document.documentElement.style.setProperty('--gray', '#e2e8f0')
+			window.document.documentElement.style.setProperty('--text', '#000000')
+		}
+		console.log('Done')
+	}
 </script>
 
 <style scoped>
 	:root {
+		--background: #ffffff;
 		--green: #339989;
 		--gray: #e2e8f0;
+		--text: #000000;
 	}
 
 	:global(body, html) {
 		height: 100%;
 		margin: 0;
 		font-family: 'Montserrat', sans-serif;
+		background-color: var(--background);
 	}
 
 	a {
@@ -25,6 +53,18 @@
 		padding: 0;
 	}
 
+	:global(.center) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	:global(.between) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
 	.page {
 		display: flex;
 		flex-direction: column;
@@ -32,9 +72,6 @@
 	}
 
 	.header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
 		padding: 1rem 1.5rem;
 	}
 
@@ -47,15 +84,10 @@
 	}
 
 	.nav {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
 		gap: 4rem;
 	}
 
 	.container-right {
-		display: flex;
-		align-items: center;
 		gap: 2rem;
 	}
 
@@ -79,35 +111,54 @@
 		box-shadow: 2px 2px 10px var(--gray);
 	}
 
+	.contact-text {
+		color: var(--text);
+	}
+
 	.container {
 		display: flex;
 		flex: 1 1 auto;
 	}
 
-	.footer {
+	.footer-nav {
 		position: sticky;
 		bottom: 0;
 		width: 100%;
 		height: 80px;
 		border-top: solid 1px var(--gray);
-		background-color: white;
+		background-color: var(--background);
 	}
 
 	.footer-container {
 		height: 100%;
 		margin: auto;
-		display: flex;
 		width: 80%;
-		justify-content: space-between;
+	}
+
+	.footer-information {
+		margin: 1rem 8rem;
+	}
+
+	.footer-title {
+		font-size: 1rem;
+		color: var(--text);
+	}
+
+	.container-links {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
 	}
 
 	.navigation-bottom {
-		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 		gap: 0.5rem;
 		padding: 8px 0;
+		color: var(--text);
+	}
+
+	.navigation-top {
+		color: var(--text);
 	}
 
 	.navigation-top:hover {
@@ -115,64 +166,87 @@
 		padding-bottom: 4px;
 	}
 
+	.link {
+		color: var(--text);
+	}
+
+	.link:hover {
+		color: var(--green);
+		text-decoration: underline;
+	}
+
 	@media only screen and (max-width: 1024px) {
-		.header {
+		.nav {
 			display: none;
 		}
 	}
 
 	@media only screen and (min-width: 1024px) {
-		.footer {
+		.footer-nav {
 			display: none;
 		}
 	}
 </style>
 
 <main class="page">
-	<header class="header">
+	<header class="header between">
 		<a href="/" class="title">Bostoen Toby</a>
-		<nav class="nav">
+		<nav class="nav between">
 			<a href="/" class="navigation-top">Home</a>
 			<a href="/projects" class="navigation-top">Projects</a>
 			<a href="/about" class="navigation-top">About</a>
 			<a
-				href="/cv.pdf"
+				href="/CV.pdf"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="navigation-top">
 				CV
 			</a>
 		</nav>
-		<div class="container-right">
-			<button class="sun-container">
+		<div class="container-right center">
+			<button on:click={changeTheme} class="sun-container">
 				<Sun class="sun" />
 			</button>
-			<button class="contact">Contact</button>
+			<button class="contact">
+				<a href="mailto:toby.bostoen123@gmail.com" class="contact-text">Contact</a>
+			</button>
 		</div>
 	</header>
 	<slot class="container" />
-	<footer class="footer">
-		<nav class="footer-container">
-			<a href="/" class="navigation-bottom">
+	<footer>
+		<section class="footer-information between">
+			<p class="footer-title">© 2023 Bostoen Toby</p>
+			<div class="container-links">
+				<a href="https://www.linkedin.com/in/toby-bostoen/" class="link">
+					LinkedIn
+				</a>
+				<a href="https://github.com/BostoenToby" class="link">Github</a>
+				<a href="mailto:toby.bostoen123@gmail.com" class="link">Mail</a>
+			</div>
+		</section>
+	</footer>
+	<nav class="footer-nav">
+		<div class="footer-container between">
+			<a href="/" class="navigation-bottom center">
 				<Home />
 				<p>Home</p>
 			</a>
-			<a href="/projects" class="navigation-bottom">
+			<a href="/projects" class="navigation-bottom center">
 				<Cpu />
 				<p>Projects</p>
 			</a>
-			<a href="/about" class="navigation-bottom">
+			<a href="/about" class="navigation-bottom center">
 				<Contact />
 				<p>About</p>
 			</a>
 			<a
-				href="/cv.pdf"
+				href="/CV.pdf"
 				target="_blank"
 				rel="noopener norefferer"
-				class="navigation-bottom">
+				class="navigation-bottom center">
 				<Download />
 				<p>CV</p>
 			</a>
-		</nav>
-	</footer>
+		</div>
+	</nav>
 </main>

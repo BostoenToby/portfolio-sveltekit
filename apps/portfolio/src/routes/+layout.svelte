@@ -3,7 +3,6 @@
 	import { Sun, Home, Cpu, Contact, Download } from 'lucide-svelte'
 
 	const changeTheme = () => {
-		console.log('Here')
 		if (
 			window.document.documentElement.style.getPropertyValue('--background') ===
 			'#FFFFFF'
@@ -13,6 +12,7 @@
 				'#1f2937',
 			)
 			window.document.documentElement.style.setProperty('--green', '#7DE2D1')
+			window.document.documentElement.style.setProperty('--green-x-dark', '#7DE2D1')
 			window.document.documentElement.style.setProperty('--gray', '#334155')
 			window.document.documentElement.style.setProperty('--text', '#FFFFFF')
 		} else {
@@ -21,16 +21,17 @@
 				'#FFFFFF',
 			)
 			window.document.documentElement.style.setProperty('--green', '#339989')
+			window.document.documentElement.style.setProperty('--green-x-dark', '#246157')
 			window.document.documentElement.style.setProperty('--gray', '#e2e8f0')
 			window.document.documentElement.style.setProperty('--text', '#000000')
 		}
-		console.log('Done')
 	}
 </script>
 
 <style scoped>
 	:root {
 		--background: #ffffff;
+		--green-x-dark: #246157;
 		--green: #339989;
 		--gray: #e2e8f0;
 		--text: #000000;
@@ -77,9 +78,9 @@
 
 	.title {
 		font-size: 1rem;
-		color: var(--green);
+		color: var(--green-x-dark);
 		padding-bottom: 6px;
-		border-bottom: 3px solid var(--green);
+		border-bottom: 3px solid var(--green-x-dark);
 		cursor: pointer;
 	}
 
@@ -175,9 +176,17 @@
 		text-decoration: underline;
 	}
 
+	.hidden {
+		display: none;
+	}
+
 	@media only screen and (max-width: 1024px) {
 		.nav {
 			display: none;
+		}
+
+		.footer-information {
+			margin: 1rem 2rem;
 		}
 	}
 
@@ -206,6 +215,7 @@
 		<div class="container-right center">
 			<button on:click={changeTheme} class="sun-container">
 				<Sun class="sun" />
+				<p class="hidden">Change theme</p>
 			</button>
 			<button class="contact">
 				<a href="mailto:toby.bostoen123@gmail.com" class="contact-text">Contact</a>

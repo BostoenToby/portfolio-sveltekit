@@ -336,8 +336,8 @@
 					alt="Projects icon"
 					width="24"
 					height="24"
-					class={`${$currentPage == '/' ? 'visit' : 'icon'}`} />
-				<p class={`${$currentPage == '/' ? 'visit-text' : null}`}>Projects</p>
+					class={`${$currentPage == '/projects' ? 'visit' : 'icon'}`} />
+				<p class={`${$currentPage == '/projects' ? 'visit-text' : null}`}>Projects</p>
 			</a>
 			<a href="/about" class="navigation-bottom center">
 				<img
@@ -345,8 +345,8 @@
 					alt="About icon"
 					width="24"
 					height="24"
-					class={`${$currentPage == '/' ? 'visit' : 'icon'}`} />
-				<p class={`${$currentPage == '/' ? 'visit-text' : null}`}>About</p>
+					class={`${$currentPage == '/about' ? 'visit' : 'icon'}`} />
+				<p class={`${$currentPage == '/about' ? 'visit-text' : null}`}>About</p>
 			</a>
 			<a
 				href="/CV.pdf"

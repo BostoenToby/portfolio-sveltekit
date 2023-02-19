@@ -22,9 +22,16 @@
 		gap: 1rem;
 		font-size: 1.5rem;
 		text-decoration: none;
-		color: var(--text);
 		width: fit-content;
 		cursor: pointer;
+	}
+
+	.back-text {
+		color: var(--text);
+	}
+
+	.icon {
+		filter: var(--filter-icon);
 	}
 
 	.back:hover {
@@ -63,8 +70,8 @@
 	.tag {
 		padding: 0.5rem 1rem;
 		border-radius: 5px;
-		background-color: var(--green);
-		color: white;
+		background-color: var(--gray);
+		color: var(--text);
 		font-size: 1rem;
 	}
 
@@ -127,8 +134,8 @@
 
 <main class="container">
 	<a href="/projects" class="back">
-		<img src="/arrow-left.svg" alt="Arrow left icon" />
-		<p>All projects</p>
+		<img src="/arrow-left.svg" alt="Arrow left icon" width=24 height=24 class="icon" />
+		<p class="back-text">All projects</p>
 	</a>
 	<section class="between information-head">
 		<div class="container-information">

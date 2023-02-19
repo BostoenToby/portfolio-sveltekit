@@ -18,14 +18,19 @@
 			)
 			window.document.documentElement.style.setProperty('--green', '#7DE2D1')
 			window.document.documentElement.style.setProperty(
-				'--green-x-dark',
+				'--green-xx-dark',
 				'#7DE2D1',
 			)
+			window.document.documentElement.style.setProperty('--green-x-dark', '#7de2d1')
 			window.document.documentElement.style.setProperty('--gray', '#334155')
 			window.document.documentElement.style.setProperty('--text', '#FFFFFF')
 			window.document.documentElement.style.setProperty(
 				'--filter-green',
-				'invert(79%) sepia(94%) saturate(211%) hue-rotate(101deg) brightness(95%) contrast(86%)',
+				'invert(47%) sepia(80%) saturate(340%) hue-rotate(121deg) brightness(92%) contrast(84%)',
+			)
+			window.document.documentElement.style.setProperty(
+				'--filter-icon',
+				'invert(100%) sepia(0%) saturate(7500%) hue-rotate(108deg) brightness(97%) contrast(107%)',
 			)
 		} else {
 			window.document.documentElement.style.setProperty(
@@ -34,14 +39,19 @@
 			)
 			window.document.documentElement.style.setProperty('--green', '#339989')
 			window.document.documentElement.style.setProperty(
-				'--green-x-dark',
+				'--green-xx-dark',
 				'#246157',
 			)
+			window.document.documentElement.style.setProperty('--green-x-dark', '#206057')
 			window.document.documentElement.style.setProperty('--gray', '#e2e8f0')
 			window.document.documentElement.style.setProperty('--text', '#000000')
 			window.document.documentElement.style.setProperty(
 				'--filter-green',
-				'invert(47%) sepia(80%) saturate(340%) hue-rotate(121deg) brightness(92%) contrast(84%)',
+				'invert(44%) sepia(52%) saturate(470%) hue-rotate(121deg) brightness(91%) contrast(90%)',
+			)
+			window.document.documentElement.style.setProperty(
+				'--filter-icon',
+				'invert(0%) sepia(0%) saturate(7477%) hue-rotate(139deg) brightness(104%) contrast(105%)',
 			)
 		}
 	}
@@ -50,13 +60,17 @@
 <style scoped>
 	:root {
 		--background: #ffffff;
-		--green-x-dark: #246157;
+		--green-xx-dark: #246157;
+		--green-x-dark: #206057;
 		--green: #339989;
 		--gray: #e2e8f0;
 		--text: #000000;
 
-		--filter-green: invert(47%) sepia(80%) saturate(340%) hue-rotate(121deg)
-			brightness(92%) contrast(84%);
+		--filter-green: invert(44%) sepia(52%) saturate(470%) hue-rotate(121deg)
+			brightness(91%) contrast(90%);
+
+		--filter-icon: invert(0%) sepia(11%) saturate(1043%) hue-rotate(336deg)
+			brightness(97%) contrast(102%);
 	}
 
 	:global(body, html) {
@@ -100,9 +114,9 @@
 
 	.title {
 		font-size: 1rem;
-		color: var(--green-x-dark);
+		color: var(--green-xx-dark);
 		padding-bottom: 6px;
-		border-bottom: 3px solid var(--green-x-dark);
+		border-bottom: 3px solid var(--green-xx-dark);
 		cursor: pointer;
 	}
 
@@ -207,8 +221,16 @@
 	}
 
 	.visit {
-		color: var(--green);
 		filter: var(--filter-green);
+	}
+
+	.visit-text {
+		color: var(--green-x-dark);
+		font-weight: 700;
+	}
+
+	.icon {
+		filter: var(--filter-icon);
 	}
 
 	@media only screen and (max-width: 1024px) {
@@ -226,6 +248,23 @@
 			display: none;
 		}
 	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--background: #1f2937;
+			--green-xx-dark: #7de2d1;
+			--green-x-dark: #7de2d1;
+			--green: #7de2d1;
+			--gray: #334155;
+			--text: #ffffff;
+
+			--filter-green: invert(79%) sepia(94%) saturate(211%) hue-rotate(101deg)
+				brightness(95%) contrast(86%);
+
+			--filter-icon: invert(100%) sepia(91%) saturate(0%) hue-rotate(250deg)
+				brightness(111%) contrast(101%);
+		}
+	}
 </style>
 
 <main class="page">
@@ -234,17 +273,17 @@
 		<nav class="nav between">
 			<a
 				href="/"
-				class={`navigation-top ${$currentPage == '/' ? 'visit' : null}`}>
+				class={`navigation-top ${$currentPage == '/' ? 'visit-text' : null}`}>
 				Home
 			</a>
 			<a
 				href="/projects"
-				class={`navigation-top ${$currentPage.includes('/projects') ? 'visit' : null}`}>
+				class={`navigation-top ${$currentPage.includes('/projects') ? 'visit-text' : null}`}>
 				Projects
 			</a>
 			<a
 				href="/about"
-				class={`navigation-top ${$currentPage == '/about' ? 'visit' : null}`}>
+				class={`navigation-top ${$currentPage == '/about' ? 'visit-text' : null}`}>
 				About
 			</a>
 			<a
@@ -257,7 +296,7 @@
 		</nav>
 		<div class="container-right center">
 			<button on:click={changeTheme} class="sun-container">
-				<img src="/sun.svg" alt="Sun icon" class="sun" />
+				<img src="/sun.svg" alt="Sun icon" class="sun" width="24" height="24" />
 				<p class="hidden">Change theme</p>
 			</button>
 			<button class="contact">
@@ -282,31 +321,45 @@
 	</footer>
 	<nav class="footer-nav">
 		<div class="footer-container between">
-			<a
-				href="/"
-				class={`navigation-bottom center ${$currentPage == '/' ? 'visit' : null}`}>
-				<img src="/home.svg" alt="Home icon" />
-				<p>Home</p>
+			<a href="/" class="navigation-bottom center">
+				<img
+					src="/home.svg"
+					alt="Home icon"
+					width="24"
+					height="24"
+					class={`${$currentPage == '/' ? 'visit' : 'icon'}`} />
+				<p class={`${$currentPage == '/' ? 'visit-text' : null}`}>Home</p>
 			</a>
-			<a
-				href="/projects"
-				class={`navigation-bottom center ${$currentPage.includes('/projects') ? 'visit' : null}`}>
-				<img src="/cpu.svg" alt="Projects icon" />
-				<p>Projects</p>
+			<a href="/projects" class="navigation-bottom center">
+				<img
+					src="/cpu.svg"
+					alt="Projects icon"
+					width="24"
+					height="24"
+					class={`${$currentPage == '/' ? 'visit' : 'icon'}`} />
+				<p class={`${$currentPage == '/' ? 'visit-text' : null}`}>Projects</p>
 			</a>
-			<a
-				href="/about"
-				class={`navigation-bottom center ${$currentPage == '/about' ? 'visit' : null}`}>
-				<img src="/contact.svg" alt="About icon" />
-				<p>About</p>
+			<a href="/about" class="navigation-bottom center">
+				<img
+					src="/contact.svg"
+					alt="About icon"
+					width="24"
+					height="24"
+					class={`${$currentPage == '/' ? 'visit' : 'icon'}`} />
+				<p class={`${$currentPage == '/' ? 'visit-text' : null}`}>About</p>
 			</a>
 			<a
 				href="/CV.pdf"
 				target="_blank"
 				rel="noopener norefferer"
 				class="navigation-bottom center">
-				<img src="/download.svg" alt="CV icon" />
-				<p>CV</p>
+				<img
+					src="/download.svg"
+					alt="CV icon"
+					width="24"
+					height="24"
+					class={`${$currentPage == '/' ? 'visit' : 'icon'}`} />
+				<p class={`${$currentPage == '/' ? 'visit-text' : null}`}>CV</p>
 			</a>
 		</div>
 	</nav>

@@ -76,12 +76,6 @@
 		margin: auto;
 	}
 
-	@media only screen and (max-width: 768px) {
-		.container-tags {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
 	@media only screen and (max-width: 1024px) {
 		.back {
 			margin: 4rem 0;
@@ -109,12 +103,20 @@
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
+
+	@media only screen and (max-width: 640px) {
+		.container-tags {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
 </style>
 
 <svelte:head>
-  <title>Project Cocktail Maker</title>
-  <meta name="description" content="The Cocktail Maker project from Bostoen Toby" />
-  <link rel="canonical" href="https://tobybostoen.be/projects/cocktailmaker" />
+	<title>Project Cocktail Maker</title>
+	<meta
+		name="description"
+		content="The Cocktail Maker project from Bostoen Toby" />
+	<link rel="canonical" href="https://tobybostoen.be/projects/cocktailmaker" />
 </svelte:head>
 
 <main class="container">

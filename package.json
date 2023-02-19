@@ -23,8 +23,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "@fontsource/montserrat": "^4.5.14",
-    "lucide-svelte": "^0.114.0"
+    "@fontsource/montserrat": "^4.5.14"
   },
   "packageManager": "npm@8.19.3"
 }

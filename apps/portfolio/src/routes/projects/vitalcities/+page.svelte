@@ -84,12 +84,6 @@
 		margin: auto;
 	}
 
-	@media only screen and (max-width: 768px) {
-		.container-tags {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
 	@media only screen and (max-width: 1024px) {
 		.back {
 			margin: 4rem 0;
@@ -117,12 +111,20 @@
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
+
+	@media only screen and (max-width: 640px) {
+		.container-tags {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
 </style>
 
 <svelte:head>
-  <title>Project Vital Cities Beweegscan</title>
-  <meta name="description" content="The Vital Cities Beweegscan project from Bostoen Toby" />
-  <link rel="canonical" href="https://tobybostoen.be/projects/vitalcities" />
+	<title>Project Vital Cities Beweegscan</title>
+	<meta
+		name="description"
+		content="The Vital Cities Beweegscan project from Bostoen Toby" />
+	<link rel="canonical" href="https://tobybostoen.be/projects/vitalcities" />
 </svelte:head>
 
 <main class="container">
@@ -163,16 +165,16 @@
 	<div class="explanation-container">
 		<p class="information-text">
 			The challenge with this website was that the customer wanted to be able to
-			add certain articles and change some aspects of the site in the future. The
-			data that is used to compare cities with eachother also needed to be
+			add certain articles and change some aspects of the site in the future.
+			The data that is used to compare cities with eachother also needed to be
 			updatable every four years so that data has been put into a Google Sheets
 			file. This file is then accessed with the Google Sheets API and processed
 			with GraphQL. When the user wants a report on his city compared to the
 			average city, he can easily give in his name, lastname, city and e-mail
-			address and a mail will be sent with a PDF of the metrics. All the ambitions
-			Vital Cities stands for are visualized with images, some explanation and
-			usefull information but also with relevant articles for the people who want
-			to know more.
+			address and a mail will be sent with a PDF of the metrics. All the
+			ambitions Vital Cities stands for are visualized with images, some
+			explanation and usefull information but also with relevant articles for
+			the people who want to know more.
 		</p>
-	</div >
+	</div>
 </main>

@@ -1,6 +1,11 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import '@fontsource/montserrat'
-	import { Sun, Home, Cpu, Contact, Download } from 'lucide-svelte'
+	import { writable } from 'svelte/store'
+
+	const currentPage = writable<string>()
+
+	$: if ($page.route.id !== null) currentPage.set($page.route.id)
 
 	const changeTheme = () => {
 		if (
@@ -12,18 +17,32 @@
 				'#1f2937',
 			)
 			window.document.documentElement.style.setProperty('--green', '#7DE2D1')
-			window.document.documentElement.style.setProperty('--green-x-dark', '#7DE2D1')
+			window.document.documentElement.style.setProperty(
+				'--green-x-dark',
+				'#7DE2D1',
+			)
 			window.document.documentElement.style.setProperty('--gray', '#334155')
 			window.document.documentElement.style.setProperty('--text', '#FFFFFF')
+			window.document.documentElement.style.setProperty(
+				'--filter-green',
+				'invert(79%) sepia(94%) saturate(211%) hue-rotate(101deg) brightness(95%) contrast(86%)',
+			)
 		} else {
 			window.document.documentElement.style.setProperty(
 				'--background',
 				'#FFFFFF',
 			)
 			window.document.documentElement.style.setProperty('--green', '#339989')
-			window.document.documentElement.style.setProperty('--green-x-dark', '#246157')
+			window.document.documentElement.style.setProperty(
+				'--green-x-dark',
+				'#246157',
+			)
 			window.document.documentElement.style.setProperty('--gray', '#e2e8f0')
 			window.document.documentElement.style.setProperty('--text', '#000000')
+			window.document.documentElement.style.setProperty(
+				'--filter-green',
+				'invert(47%) sepia(80%) saturate(340%) hue-rotate(121deg) brightness(92%) contrast(84%)',
+			)
 		}
 	}
 </script>
@@ -35,6 +54,9 @@
 		--green: #339989;
 		--gray: #e2e8f0;
 		--text: #000000;
+
+		--filter-green: invert(47%) sepia(80%) saturate(340%) hue-rotate(121deg)
+			brightness(92%) contrast(84%);
 	}
 
 	:global(body, html) {
@@ -95,8 +117,11 @@
 	.sun-container {
 		border: none;
 		background-color: inherit;
-		color: var(--green);
 		cursor: pointer;
+	}
+
+	.sun {
+		filter: var(--filter-green);
 	}
 
 	.contact {
@@ -177,7 +202,13 @@
 	}
 
 	.hidden {
-		display: none;
+		color: var(--background);
+		font-size: 1px;
+	}
+
+	.visit {
+		color: var(--green);
+		filter: var(--filter-green);
 	}
 
 	@media only screen and (max-width: 1024px) {
@@ -201,9 +232,21 @@
 	<header class="header between">
 		<a href="/" class="title">Bostoen Toby</a>
 		<nav class="nav between">
-			<a href="/" class="navigation-top">Home</a>
-			<a href="/projects" class="navigation-top">Projects</a>
-			<a href="/about" class="navigation-top">About</a>
+			<a
+				href="/"
+				class={`navigation-top ${$currentPage == '/' ? 'visit' : null}`}>
+				Home
+			</a>
+			<a
+				href="/projects"
+				class={`navigation-top ${$currentPage.includes('/projects') ? 'visit' : null}`}>
+				Projects
+			</a>
+			<a
+				href="/about"
+				class={`navigation-top ${$currentPage == '/about' ? 'visit' : null}`}>
+				About
+			</a>
 			<a
 				href="/CV.pdf"
 				target="_blank"
@@ -214,11 +257,13 @@
 		</nav>
 		<div class="container-right center">
 			<button on:click={changeTheme} class="sun-container">
-				<Sun class="sun" />
+				<img src="/sun.svg" alt="Sun icon" class="sun" />
 				<p class="hidden">Change theme</p>
 			</button>
 			<button class="contact">
-				<a href="mailto:toby.bostoen123@gmail.com" class="contact-text">Contact</a>
+				<a href="mailto:toby.bostoen123@gmail.com" class="contact-text">
+					Contact
+				</a>
 			</button>
 		</div>
 	</header>
@@ -237,16 +282,22 @@
 	</footer>
 	<nav class="footer-nav">
 		<div class="footer-container between">
-			<a href="/" class="navigation-bottom center">
-				<Home />
+			<a
+				href="/"
+				class={`navigation-bottom center ${$currentPage == '/' ? 'visit' : null}`}>
+				<img src="/home.svg" alt="Home icon" />
 				<p>Home</p>
 			</a>
-			<a href="/projects" class="navigation-bottom center">
-				<Cpu />
+			<a
+				href="/projects"
+				class={`navigation-bottom center ${$currentPage.includes('/projects') ? 'visit' : null}`}>
+				<img src="/cpu.svg" alt="Projects icon" />
 				<p>Projects</p>
 			</a>
-			<a href="/about" class="navigation-bottom center">
-				<Contact />
+			<a
+				href="/about"
+				class={`navigation-bottom center ${$currentPage == '/about' ? 'visit' : null}`}>
+				<img src="/contact.svg" alt="About icon" />
 				<p>About</p>
 			</a>
 			<a
@@ -254,7 +305,7 @@
 				target="_blank"
 				rel="noopener norefferer"
 				class="navigation-bottom center">
-				<Download />
+				<img src="/download.svg" alt="CV icon" />
 				<p>CV</p>
 			</a>
 		</div>

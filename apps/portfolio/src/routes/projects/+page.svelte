@@ -47,7 +47,7 @@
 		font-size: 1rem;
 		line-height: 1.8rem;
 		text-align: start;
-		color: black;
+		color: var(--text);
 	}
 
 	@media only screen and (max-width: 1024px) {
@@ -98,6 +98,24 @@
 
 		.title {
 			margin: 2rem 0;
+		}
+	}
+
+	@media only screen and (max-width: 640px)  {
+		.project-container {
+			display: grid;
+			grid-template-columns: repeat(1, 1fr);
+			gap: 2rem;
+			margin-top: 4rem;
+			margin: 1rem;
+		}
+
+		.container {
+			margin: 0 2rem;
+		}
+
+		.button-information {
+			padding: 1rem;
 		}
 	}
 </style>

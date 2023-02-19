@@ -59,9 +59,8 @@
 	}
 
 	.icon {
-		font-size: 1.5rem;
-		color: var(--green);
 		padding-bottom: 0.5rem;
+		filter: var(--filter-green);
 	}
 
 	@media only screen and (max-width: 1024px) {
@@ -107,9 +106,9 @@
 </style>
 
 <svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Home of Bostoen Toby's portfolio" />
-  <link rel="canonical" href="https://tobybostoen.be" />
+	<title>Home</title>
+	<meta name="description" content="Home of Bostoen Toby's portfolio" />
+	<link rel="canonical" href="https://tobybostoen.be" />
 </svelte:head>
 
 <main class="container center">
@@ -119,16 +118,37 @@
 		<h3 class="subtitle">based in Belgium</h3>
 		<div class="grid-lang">
 			{#each languages as language}
-				{#if language != 'C#'}
+				{#if language != 'C#' && language != 'React' && language != 'TailwindCSS'}
 					<div class="container-lang center">
-						<i class="devicon-{language.toLocaleLowerCase()}-plain icon" />
-						<!-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{language}/{language}-plain.svg" alt="{language} icon" loading="lazy"> -->
+						<img
+							src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{language.toLowerCase()}/{language.toLowerCase()}-plain.svg"
+							alt="{language} icon"
+							loading="lazy"
+							width="24"
+							height="24"
+							class="icon" />
 						<p>{language}</p>
 					</div>
-				{:else}
+				{:else if language == 'C#'}
 					<div class="container-lang center">
-						<i class="devicon-csharp-plain icon" />
-						<!-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-plain.svg" alt="Csharp icon" loading="lazy"> -->
+						<img
+							src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-plain.svg"
+							alt="{language} icon"
+							loading="lazy"
+							width="24"
+							height="24"
+							class="icon" />
+						<p>{language}</p>
+					</div>
+				{:else if language == 'React'}
+					<div class="container-lang center">
+						<img
+							src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+							alt="{language} icon"
+							loading="lazy"
+							width="24"
+							height="24"
+							class="icon" />
 						<p>{language}</p>
 					</div>
 				{/if}

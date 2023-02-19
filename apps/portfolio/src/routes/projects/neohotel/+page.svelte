@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { ArrowLeft } from 'lucide-svelte'
-
 	const tags = [
 		'Svelte',
 		'NestJS',
@@ -126,7 +124,7 @@
 
 <main class="container">
 	<a href="/projects" class="back">
-		<ArrowLeft />
+		<img src="/arrow-left.svg" alt="Arrow left icon" />
 		<p>All projects</p>
 	</a>
 	<section class="information-head between">
